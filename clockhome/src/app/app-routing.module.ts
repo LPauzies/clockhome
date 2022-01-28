@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PokewatchComponent } from './components/pokewatch/pokewatch.component';
 
-const routes: Routes = [];
+export const routes: Routes = [
+  { path: 'pokewatch', component: PokewatchComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
