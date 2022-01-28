@@ -32,15 +32,10 @@ jobs:
     
     - name: Checkout
       uses: actions/checkout@v2
-
-    - name: Go to source code
-      run: cd clockhome
-
-    - name: Go to source code
-      run: ls -la
     
     - name: Setup Node version
       uses: actions/setup-node@v2
+      working-directory: ./clockhome
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
@@ -50,7 +45,9 @@ jobs:
       run: echo "::set-output name=date::$(date + '[%d/%m/%Y %H:%M]')"
 
     - name: Install the app
+      working-directory: ./clockhome
       run: npm ci
     
     - name: Deployment
+      working-directory: ./clockhome
       run: ng deploy --base-href=$HTTP_URI --repo=$SSH_URI --message="${{ steps.date.outputs.date }} CICD - Clockhome" --name=$OWNER --email=$EMAIL
