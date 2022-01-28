@@ -44,7 +44,7 @@ jobs:
         cache-dependency-path: '**/package-lock.json'
 
     - name: Test
-      run: echo ${{ secrets.pat }}
+      run: echo ${{ secrets.GITHUB_TOKEN }}
     
     - name: Define the date of the commit
       id: date
