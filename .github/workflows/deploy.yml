@@ -43,12 +43,8 @@ jobs:
         cache: 'npm'
         cache-dependency-path: '**/package-lock.json'
 
-    - name: Test
-      run: echo ${{ secrets.GITHUB_TOKEN }}
-    
-    - name: Define the date of the commit
-      id: date
-      run: echo "DATE=$(date + '[%d/%m/%Y %H:%M]')" >> $GITHUB_ENV
+    - name: Retrieve Github Token for authentication
+      run: echo "GH_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
 
     - name: Install Angular CLI
       run: npm install -g @angular/cli
@@ -56,6 +52,10 @@ jobs:
     - name: Install the app
       run: npm ci
     
+    - name: Define the date of the commit
+      id: date
+      run: echo "DATE=$(date + '[%d/%m/%Y %H:%M]')" >> $GITHUB_ENV
+
     - name: Deployment
       run: |
         ng deploy --base-href=${{ env.HTTP_TARGET }} --repo=${{ env.HTTP_URI }} --message="${{ env.DATE }} CICD - Clockhome" --name=${{ env.OWNER }} --email=${{ env.EMAIL }} --no-silent
