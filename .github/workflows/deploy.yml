@@ -43,9 +43,8 @@ jobs:
         cache: 'npm'
         cache-dependency-path: '**/package-lock.json'
 
-    - uses: actions/labeler@v2
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Test
+      run: echo ${{ secrets.pat }}
     
     - name: Define the date of the commit
       id: date
