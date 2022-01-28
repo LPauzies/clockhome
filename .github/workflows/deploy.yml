@@ -32,6 +32,9 @@ jobs:
     
     - name: Checkout
       uses: actions/checkout@v2
+
+    - name: Go to source code
+      run: cd clockhome
     
     - name: Setup Node version
       uses: actions/setup-node@v2
