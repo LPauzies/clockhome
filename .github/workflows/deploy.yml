@@ -47,6 +47,9 @@ jobs:
       id: date
       run: echo "::set-output name=date::$(date + '[%d/%m/%Y %H:%M]')"
 
+    - name: Install Angular CLI
+      run: npm install -g @angular/cli
+
     - name: Install the app
       run: npm ci
     
