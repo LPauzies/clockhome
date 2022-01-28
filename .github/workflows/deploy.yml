@@ -37,12 +37,16 @@ jobs:
       id: date
       run: echo "::set-output name=date::$(date + '[%d/%m/%Y %H:%M]')"
     
-    - name: Deployment
+    - name: Setup Node version
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    
+    - name: Install the app
       run: npm ci
+    
+    - name: Deployment
       run: ng deploy --base-href=$HTTP_URI --repo=$SSH_URI --message="$DATE CICD - Clockhome" --name=$OWNER --email=$EMAIL
       env:
         # Refers to step with id "date" and search for the output named "date" (use of --set-output)
