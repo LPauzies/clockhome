@@ -14,8 +14,8 @@ on:
     
 env:
   REPOSITORY: clockhome
-  HTTP_URI: https://lpauzies.github.io/clockhome/
-  SSH_URI: git@github.com:LPauzies/clockhome.git
+  HTTP_TARGET: https://lpauzies.github.io/clockhome/
+  HTTP_URI: https://github.com/LPauzies/clockhome.git
   EMAIL: lucas.pauzies@hotmail.fr
   OWNER: LPauzies
 
@@ -42,10 +42,14 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         cache-dependency-path: '**/package-lock.json'
+
+    - uses: actions/labeler@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Define the date of the commit
       id: date
-      run: echo "date=$(date + '[%d/%m/%Y %H:%M]')" >> $GITHUB_ENV
+      run: echo "DATE=$(date + '[%d/%m/%Y %H:%M]')" >> $GITHUB_ENV
 
     - name: Install Angular CLI
       run: npm install -g @angular/cli
@@ -55,4 +59,4 @@ jobs:
     
     - name: Deployment
       run: |
-        ng deploy --base-href=${{ env.HTTP_URI }} --repo=$SSH_URI --message="${{ env.date }} CICD - Clockhome" --name=$OWNER --email=$EMAIL --no-silent
+        ng deploy --base-href=${{ env.HTTP_TARGET }} --repo=${{ env.HTTP_URI }} --message="${{ env.DATE }} CICD - Clockhome" --name=${{ env.OWNER }} --email=${{ env.EMAIL }} --no-silent
