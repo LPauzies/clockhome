@@ -1,0 +1,49 @@
+# This workflow has been developped by Lucas Pauzies for clockhome project to try github actions pipelines.
+# It declare environnement variables for the pipeline
+# It checkout the git repository on ubuntu agent
+# It defines the date of the commit for deployment
+# It deploy the app using "ng deploy" from `angular-cli-ghpages`
+
+name: Clockhome deployment
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+    
+env:
+  REPOSITORY: clockhome
+  HTTP_URI: https://lpauzies.github.io/clockhome/
+  SSH_URI: git@github.com:LPauzies/clockhome.git
+  EMAIL: lucas.pauzies@hotmail.fr
+  OWNER: LPauzies
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+
+    steps:
+    
+    - name: Checkout
+      uses: actions/checkout@v2
+    
+    - name: Define the date of the commit
+      id: date
+      run: echo "::set-output name=date::$(date + '[%d/%m/%Y %H:%M]')"
+    
+    - name: Deployment
+    - uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+    - run: ng deploy --base-href=$HTTP_URI --repo=$SSH_URI --message="$DATE CICD - Clockhome" --name=$OWNER --email=$EMAIL
+      env:
+        # Refers to step with id "date" and search for the output named "date" (use of --set-output)
+        DATE: ${{ steps.date.outputs.date }}
