@@ -26,16 +26,12 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
+        node-version: [16.x]
 
     steps:
     
     - name: Checkout
       uses: actions/checkout@v2
-    
-    - name: Define the date of the commit
-      id: date
-      run: echo "::set-output name=date::$(date + '[%d/%m/%Y %H:%M]')"
     
     - name: Setup Node version
       uses: actions/setup-node@v2
@@ -43,11 +39,12 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     
+    - name: Define the date of the commit
+      id: date
+      run: echo "::set-output name=date::$(date + '[%d/%m/%Y %H:%M]')"
+
     - name: Install the app
       run: npm ci
     
     - name: Deployment
-      run: ng deploy --base-href=$HTTP_URI --repo=$SSH_URI --message="$DATE CICD - Clockhome" --name=$OWNER --email=$EMAIL
-      env:
-        # Refers to step with id "date" and search for the output named "date" (use of --set-output)
-        DATE: ${{ steps.date.outputs.date }}
+      run: ng deploy --base-href=$HTTP_URI --repo=$SSH_URI --message="${{ steps.date.outputs.date }} CICD - Clockhome" --name=$OWNER --email=$EMAIL
