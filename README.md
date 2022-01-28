@@ -1,6 +1,6 @@
 # Clockhome
 
-The fantasy clock for home
+[![pages-build-deployment](https://github.com/LPauzies/clockhome/actions/workflows/pages/pages-build-deployment/badge.svg?branch=gh-pages)](https://github.com/LPauzies/clockhome/actions/workflows/pages/pages-build-deployment)
 
 ## Installation
 
