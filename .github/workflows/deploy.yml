@@ -57,6 +57,6 @@ jobs:
       run: |
         echo $HTTP_URI
         echo $DATE
-        ng deploy --base-href=$HTTP_URI --repo=$SSH_URI --message="CICD - Clockhome" --name=$OWNER --email=$EMAIL
+        ng deploy --base-href=$HTTP_URI --repo=$SSH_URI --message="CICD - Clockhome" --name=$OWNER --email=$EMAIL --no-silent
       env:
         DATE: ${{ steps.date.outputs.date }}
