@@ -54,4 +54,9 @@ jobs:
       run: npm ci
     
     - name: Deployment
-      run: ng deploy --base-href=$HTTP_URI --repo=$SSH_URI --message="${{ steps.date.outputs.date }} CICD - Clockhome" --name=$OWNER --email=$EMAIL
+      run: |
+        echo $HTTP_URI
+        echo $DATE
+        ng deploy --base-href=$HTTP_URI --repo=$SSH_URI --message="CICD - Clockhome" --name=$OWNER --email=$EMAIL
+      env:
+        DATE: ${{ steps.date.outputs.date }}
