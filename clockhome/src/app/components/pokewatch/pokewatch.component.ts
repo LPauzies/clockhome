@@ -32,6 +32,6 @@ export class PokewatchComponent implements OnInit {
   
   goToLinkedIn(): void {
     window.open("https://www.linkedin.com/in/lucas-pauzies/", "_blank");
-  }  
+  }
 
 }

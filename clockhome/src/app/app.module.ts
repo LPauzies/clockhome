@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PokewatchComponent } from './components/pokewatch/pokewatch.component';
 import { DateService } from './services/date.service';
+import { PathfinderComponent } from './components/pathfinder/pathfinder.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PokewatchComponent
+    PokewatchComponent,
+    PathfinderComponent
   ],
   imports: [
     BrowserModule,

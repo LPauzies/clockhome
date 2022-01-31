@@ -11,18 +11,30 @@ import { Router } from '@angular/router';
 export class AppComponent {
 
   // Subscription
-  timerSubscription: Subscription;
+  clockSubscription: Subscription;
+  reloaderSubscription: Subscription;
 
   constructor(private router: Router) {
     // Initialize it by default
-    let timeRotation = 86400000; // Milliseconds in 1 whole day
-    if (routes[0].path) this.router.navigateByUrl(routes[0].path);
-    this.timerSubscription = timer(0, timeRotation).pipe(
+    let clockTime = 3600000; // Change every hour
+    this.clockSubscription = timer(0, clockTime).pipe(
       map(() => {
         let currentRoute = this.router.url;
-        let stayingRoutes = routes.filter(route => (route.path) ? currentRoute.includes(route.path) : false);
+        let stayingRoutes = routes.filter(route => (route.path) ? !currentRoute.includes(route.path) : true);
         let pickedRoute = stayingRoutes[Math.floor(Math.random()*stayingRoutes.length)];
         this.router.navigateByUrl(`/${pickedRoute.path}`);
+      })
+    ).subscribe();
+    this.reloaderSubscription = timer(0, 1000).pipe(
+      map(() => {
+        const currentDate = new Date();
+
+        const toBeReloaded =
+          currentDate.getHours() == 0 &&
+          currentDate.getMinutes() == 0 &&
+          currentDate.getSeconds() == 0;
+
+        if (toBeReloaded) window.location.reload();
       })
     ).subscribe();
   }
