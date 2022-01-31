@@ -16,7 +16,7 @@ export class AppComponent {
 
   constructor(private router: Router) {
     // Initialize it by default
-    let clockTime = 3600000; // Change every hour
+    let clockTime = 7200000; // Change every 2 hours
     this.clockSubscription = timer(0, clockTime).pipe(
       map(() => {
         let currentRoute = this.router.url;
