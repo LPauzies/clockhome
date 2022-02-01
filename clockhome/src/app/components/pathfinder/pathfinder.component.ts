@@ -10,8 +10,8 @@ import { DateService } from 'src/app/services/date.service';
 export class PathfinderComponent implements OnInit {
 
   time: string;
-  currentBackground: string; // Should refer to a, b, c, ..."url('../../../assets/img/pathfinder/a.jpg')";
-  backgrounds = [ "a", "b", "c", "d", "e", "f" ]
+  currentBackground: string; // Refer to string constructed as value for property "background-image"
+  backgrounds = [ "a", "b", "c", "d", "e", "f" ] // Refer the name of the files as background
 
   // Subscription
   timerSubscription: Subscription;
@@ -34,7 +34,7 @@ export class PathfinderComponent implements OnInit {
   getRandomBackground(): string {
     let backgrounds = this.backgrounds.filter(e => e != this.currentBackground);
     let pickedBackground = backgrounds[Math.floor(Math.random()*backgrounds.length)];
-    return `url('../../../assets/img/pathfinder/${pickedBackground}.jpg')`;
+    return `url('/assets/img/pathfinder/${pickedBackground}.jpg')`;
   }
 
   goToGitHub(): void {
