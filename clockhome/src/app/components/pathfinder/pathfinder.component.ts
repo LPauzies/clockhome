@@ -34,7 +34,7 @@ export class PathfinderComponent implements OnInit {
   getRandomBackground(): string {
     let backgrounds = this.backgrounds.filter(e => e != this.currentBackground);
     let pickedBackground = backgrounds[Math.floor(Math.random()*backgrounds.length)];
-    return `url('/assets/img/pathfinder/${pickedBackground}.jpg')`;
+    return `url('assets/img/pathfinder/${pickedBackground}.jpg')`;
   }
 
   goToGitHub(): void {
