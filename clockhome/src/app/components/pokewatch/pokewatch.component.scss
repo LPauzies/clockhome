@@ -109,3 +109,25 @@
     letter-spacing: 0.05em;
     align-self: center;
 }
+
+.blinking {    
+    animation: blinkingText 1.2s infinite;
+}
+
+@keyframes blinkingText{
+    0% { 
+        color: #11575f;
+    }
+    49% {
+        color: #11575f;
+    }
+    60% { 
+        color: transparent;
+    }
+    99% { 
+        color:transparent;
+    }
+    100% { 
+        color: #11575f;
+    }
+}    

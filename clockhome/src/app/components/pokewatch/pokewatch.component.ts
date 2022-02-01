@@ -9,7 +9,8 @@ import { DateService } from 'src/app/services/date.service';
 })
 export class PokewatchComponent implements OnInit {
 
-  time: string;
+  hours: string;
+  minutes: string;
 
   // Subscription
   timerSubscription: Subscription;
@@ -17,9 +18,9 @@ export class PokewatchComponent implements OnInit {
   constructor(
     private dateService: DateService
   ) {
-    this.time = this.dateService.getFormattedDate();
+    [this.hours, this.minutes] = this.dateService.getFormattedDate().split(":");
     this.timerSubscription = timer(0, 1000).pipe(
-      map(() => this.time = this.dateService.getFormattedDate())
+      map(() => [this.hours, this.minutes] = this.dateService.getFormattedDate().split(":"))
     ).subscribe();
   }
 
