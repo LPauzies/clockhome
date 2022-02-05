@@ -21,7 +21,7 @@ export class LeagueComponent implements OnInit {
     this.time = this.dateService.getFormattedDate();
     this.videoWidth = document.documentElement.clientWidth;
     this.videoHeight = document.documentElement.clientHeight;
-    this.source = `${environment.url}assets/video/league/league.mp4`;
+    this.source = `${environment.url}/assets/video/league/league.mp4`;
     this.timerSubscription = timer(0, 1000).pipe(
       map(() => this.time = this.dateService.getFormattedDate())
     ).subscribe();

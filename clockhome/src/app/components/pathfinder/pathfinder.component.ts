@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { map, Subscription, timer } from 'rxjs';
 import { DateService } from 'src/app/services/date.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pathfinder',
@@ -34,7 +35,7 @@ export class PathfinderComponent implements OnInit {
   getRandomBackground(): string {
     let backgrounds = this.backgrounds.filter(e => e != this.currentBackground);
     let pickedBackground = backgrounds[Math.floor(Math.random()*backgrounds.length)];
-    return `url('assets/img/pathfinder/${pickedBackground}.jpg')`;
+    return `url('${environment.url}/assets/img/pathfinder/${pickedBackground}.jpg')`;
   }
 
   goToGitHub(): void {

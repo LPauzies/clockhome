@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: "https://lpauzies.github.io/clockhome/"
+  url: "https://lpauzies.github.io/clockhome"
 };
 
 /*
