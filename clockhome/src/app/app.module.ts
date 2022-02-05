@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { PokewatchComponent } from './components/pokewatch/pokewatch.component';
 import { DateService } from './services/date.service';
 import { PathfinderComponent } from './components/pathfinder/pathfinder.component';
+import { LeagueComponent } from './components/league/league.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PokewatchComponent,
-    PathfinderComponent
+    PathfinderComponent,
+    LeagueComponent
   ],
   imports: [
     BrowserModule,

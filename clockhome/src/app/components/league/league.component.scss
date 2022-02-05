@@ -1,0 +1,50 @@
+@font-face {
+    font-family: "Arcane";
+    src: url("../../../assets/fonts/Arcane.otf");
+}
+
+video {
+    object-fit: fill;
+}
+
+#body {
+    background-color: #000000;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#footer {
+    position: absolute;
+    width: 99.5%;
+    bottom: 0;
+    text-align: right;
+}
+
+.logo {
+    width: auto;
+    height: 1.4vmax;
+    max-height: 32px;
+    cursor: pointer;
+    margin-left: 0.2vw;
+}
+
+#date {
+    font-family: "Arcane";
+    color: #ffffff;
+    font-size: 20vmin;
+    letter-spacing: 0.05em;
+    position: absolute;
+    top: 10vh;
+    left: 10vh;
+    background: -webkit-linear-gradient(top, #C6AD8F, #C2A786, #7D644B, #856A4C);
+    background-clip: text;
+    -webkit-text-stroke: 3px rgb(37, 27, 18);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 15px rgb(37, 27, 18));
+}

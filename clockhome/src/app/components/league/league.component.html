@@ -1,0 +1,14 @@
+<div id="body">
+    <video id="home" autoplay loop="1" [height]=videoHeight [width]=videoWidth muted>
+        <source [src]="source" type="video/mp4">
+    </video>
+
+    <div id="date">
+        {{ time }}
+    </div>
+    
+    <div id="footer">
+        <img class="logo" src="assets/img/github_icon.png" (click)="goToGitHub()">
+        <img class="logo" src="assets/img/linkedin_icon.png" (click)="goToLinkedIn()">
+    </div>
+</div>

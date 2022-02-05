@@ -21,6 +21,7 @@ export class AppComponent {
       map(() => {
         let currentRoute = this.router.url;
         let stayingRoutes = routes.filter(route => (route.path) ? !currentRoute.includes(route.path) : true);
+        if (stayingRoutes.length < 1) return;
         let pickedRoute = stayingRoutes[Math.floor(Math.random()*stayingRoutes.length)];
         this.router.navigateByUrl(`/${pickedRoute.path}`);
       })
