@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { map, Subscription, timer } from 'rxjs';
 import { DateService } from 'src/app/services/date.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-league',
@@ -20,7 +21,7 @@ export class LeagueComponent implements OnInit {
     this.time = this.dateService.getFormattedDate();
     this.videoWidth = document.documentElement.clientWidth;
     this.videoHeight = document.documentElement.clientHeight;
-    this.source = "../../../assets/video/league/league.mp4"
+    this.source = `${environment.url}assets/video/league/league.mp4`;
     this.timerSubscription = timer(0, 1000).pipe(
       map(() => this.time = this.dateService.getFormattedDate())
     ).subscribe();
